@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *               - LSS address (/2/ Identity Object, Index 1018H)
  *  @ingroup comobj
  */
-					 
+#include <applicfg.h>		 
 #ifndef __LSS_h__
 #define __LSS_h__
 
@@ -91,7 +91,7 @@ typedef void (*lss_StoreConfiguration_t)(CO_Data* d,UNS8*,UNS8*);
 
 struct struct_lss_transfer;
 
-//#include "timer.h"
+//#include "timers.h"
 
 #ifdef CO_ENABLE_LSS_FS
 struct struct_lss_fs_transfer {
@@ -118,7 +118,7 @@ struct struct_lss_transfer {
   UNS8 addr_sel_match;    	/* the matching mask for the LSS Switch Mode Selective service */
   UNS8 addr_ident_match;    /* the matching mask for the LSS Identify Remote Slaves service*/
 
-  char *baudRate;           /* the new baudrate stored to update the node baudrate when a Activate Bit 
+	char*   baudRate;           /* the new baudrate stored to update the node baudrate when a Activate Bit 
   							 * Timing Parameters is received*/
   UNS16 switchDelay;		/* the period of the two delay */
   UNS8  switchDelayState;   /* the state machine for the switchDelay */

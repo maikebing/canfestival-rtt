@@ -1,31 +1,8 @@
-/*
-  This file is part of CanFestival, a library implementing CanOpen
-  Stack.
-
-  Copyright (C): Edouard TISSERANT and Francis DUPIN
-
-  See COPYING file for copyrights details.
-
-  This library is free software; you can redistribute it and/or
-  modify it under the terms of the GNU Lesser General Public
-  License as published by the Free Software Foundation; either
-  version 2.1 of the License, or (at your option) any later version.
-
-  This library is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-  Lesser General Public License for more details.
-
-  You should have received a copy of the GNU Lesser General Public
-  License along with this library; if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
-  USA
-*/
 
 /*!
 ** @file   lifegrd.c
-** @author Edouard TISSERANT
-** @date   Mon Jun  4 17:19:24 2007
+** @author HBUT
+** @date   2020.12.10
 **
 ** @brief
 **
@@ -187,8 +164,9 @@ void ProducerHeartbeatAlarm(CO_Data* d, UNS32 id)
       msg.data[0] = d->nodeState; /* No toggle for heartbeat !*/
       /* send the heartbeat */
       MSG_WAR(0x3130, "Producing heartbeat: ", d->nodeState);
-      canSend(d->canHandle,&msg );
-
+//      canSend(d->canHandle,&msg );
+			canSend((CAN_PORT *)1,&msg );
+			canSend((CAN_PORT *)2,&msg );
     }else{
       d->ProducerHeartBeatTimer = DelAlarm(d->ProducerHeartBeatTimer);
     }
@@ -280,12 +258,8 @@ UNS32 OnNodeGuardUpdate(CO_Data* d, const indextable * unused_indextable, UNS8 u
 **/
 UNS32 OnHeartbeatProducerUpdate(CO_Data* d, const indextable * unused_indextable, UNS8 unused_bSubindex)
 {
-  d->ProducerHeartBeatTimer = DelAlarm(d->ProducerHeartBeatTimer);
-  if ( *d->ProducerHeartBeatTime )
-    {
-      TIMEVAL time = *d->ProducerHeartBeatTime;
-      d->ProducerHeartBeatTimer = SetAlarm(d, 0, &ProducerHeartbeatAlarm, 0, MS_TO_TIMEVAL(time));
-    }
+  heartbeatStop(d);
+  heartbeatInit(d);
   return 0;
 }
 

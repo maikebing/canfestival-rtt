@@ -33,7 +33,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define OD_WRITE_NOT_ALLOWED         0x06010002
 #define OD_NO_SUCH_OBJECT            0x06020000
 #define OD_NOT_MAPPABLE              0x06040041
-#define OD_ACCES_FAILED              0x06060000
 #define OD_LENGTH_DATA_INVALID       0x06070010
 #define OD_NO_SUCH_SUBINDEX 	     0x06090011
 #define OD_VALUE_RANGE_EXCEEDED      0x06090030 /* Value range test result */
@@ -43,8 +42,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 #define SDOABT_TOGGLE_NOT_ALTERNED   0x05030000
 #define SDOABT_TIMED_OUT             0x05040000
-#define SDOABT_CS_NOT_VALID          0x05040001
-#define SDOABT_INVALID_BLOCK_SIZE    0x05040002
 #define SDOABT_OUT_OF_MEMORY         0x05040005 /* Size data exceed SDO_MAX_LENGTH_TRANSFER */
 #define SDOABT_GENERAL_ERROR         0x08000000 /* Error size of SDO message */
 #define SDOABT_LOCAL_CTRL_ERROR      0x08000021 
@@ -145,7 +142,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define SDOtx      0xB
 #define SDOrx      0xC
 #define NODE_GUARD 0xE
-#define LSS 	   0xF
+#define LSS 	  	 0xF
 
 /* NMT Command Specifier, sent by master to change a slave state */
 /* ------------------------------------------------------------- */
